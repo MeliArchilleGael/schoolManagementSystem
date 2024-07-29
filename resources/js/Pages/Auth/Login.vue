@@ -6,6 +6,9 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import MainLayout from "@/Layouts/MainLayout.vue";
+
+import { useMeta } from '@/composables/use-meta';
 
 defineProps<{
     canResetPassword?: boolean;
@@ -18,6 +21,8 @@ const form = useForm({
     remember: false,
 });
 
+useMeta({title: "Login"})
+
 const submit = () => {
     form.post(route('login'), {
         onFinish: () => {
@@ -28,8 +33,7 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Log in" />
+    <MainLayout>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -88,5 +92,5 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
-    </GuestLayout>
+    </MainLayout>
 </template>

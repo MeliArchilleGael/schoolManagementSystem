@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import path from 'path';
+import vueI18n from '@intlify/vite-plugin-vue-i18n';
 
 export default defineConfig({
     plugins: [
@@ -17,5 +19,11 @@ export default defineConfig({
                 },
             },
         }),
+        vueI18n({
+            include: path.resolve('resources/js/locales/**'),
+        }),
     ],
+    optimizeDeps: {
+        include: ['quill'],
+    },
 });
