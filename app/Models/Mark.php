@@ -13,7 +13,7 @@ class Mark extends Model
 
     protected $guarded = [];
     protected $keyType = "string";
-
+    public $incrementing = false;
     public function academicYear(): BelongsTo
     {
         return $this->belongsTo(AcademicYear::class);

@@ -12,7 +12,7 @@ class Payment extends Model
 
     protected $guarded = [];
     protected $keyType = "string";
-
+    public $incrementing = false;
 
     public function paymentType(): BelongsTo
     {

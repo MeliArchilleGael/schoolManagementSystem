@@ -12,7 +12,7 @@ class SectionNote extends Model
 
     protected $guarded = [];
     protected $keyType = "string";
-
+    public $incrementing = false;
 
     public function marks(): HasMany
     {

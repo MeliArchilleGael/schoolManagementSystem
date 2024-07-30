@@ -13,7 +13,7 @@ class PaymentType extends Model
 
     protected $guarded = [];
     protected $keyType = "string";
-
+    public $incrementing = false;
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);

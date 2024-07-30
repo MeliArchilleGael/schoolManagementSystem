@@ -14,7 +14,7 @@ class Classroom extends Model
 
     protected $guarded = [];
     protected $keyType = "string";
-
+    public $incrementing = false;
 
     public function cycle(): BelongsTo
     {

@@ -12,7 +12,7 @@ class School extends Model
 
     protected $guarded = [];
     protected $keyType = "string";
-
+    public $incrementing = false;
     public function sections(): HasMany
     {
         return $this->hasMany(Section::class);
