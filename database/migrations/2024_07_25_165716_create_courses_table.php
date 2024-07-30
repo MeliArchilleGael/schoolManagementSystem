@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('classrooms', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->foreignId('cycle_id')->constrained('cycles', 'id')->cascadeOnDelete();
             $table->string('title')->unique();
             $table->integer('quantity')->default(25);
@@ -20,14 +20,14 @@ return new class extends Migration
         });
 
         Schema::create('courses', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->string('title')->unique();
             $table->string('code')->unique();
             $table->timestamps();
         });
 
         Schema::create('classroom_courses', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->foreignId('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
             $table->foreignId('course_id')->constrained('courses', 'id')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
@@ -37,7 +37,7 @@ return new class extends Migration
         });
 
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->string('matricule')->unique();
             $table->string('name');
             $table->string('surname');
@@ -58,12 +58,12 @@ return new class extends Migration
         });
 
         Schema::create('section_notes', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->string('title');
         });
 
         Schema::create('marks', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             // foreign keys
             $table->foreignId('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
             $table->foreignId('section_note_id')->constrained('section_notes', 'id')->cascadeOnDelete();
@@ -81,7 +81,7 @@ return new class extends Migration
         });
 
         Schema::create('payment_types', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->string('title')->unique();
             $table->decimal('amount',10,2);
             $table->date('start_promotion_date')->nullable();
@@ -91,7 +91,7 @@ return new class extends Migration
         });
 
         Schema::create('payments', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->decimal('total_amount',10,2)->nullable();
             $table->date('payment_date')->nullable();
             $table->foreignId('student_id')->constrained('students', 'id')->cascadeOnDelete();

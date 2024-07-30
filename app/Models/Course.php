@@ -12,6 +12,7 @@ class Course extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $keyType = "string";
 
     public function classroomCourses(): HasMany
     {

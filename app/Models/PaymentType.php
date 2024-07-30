@@ -12,6 +12,7 @@ class PaymentType extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $keyType = "string";
 
     public function payments(): HasMany
     {
