@@ -1,5 +1,7 @@
 <template>
     <MainLayout>
+        <Head title="Dashboard" />
+
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
                 <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
@@ -766,12 +768,9 @@ import IconPlus from '@/Components/theme/icon/icon-plus.vue';
 import IconCaretDown from '@/Components/theme/icon/icon-caret-down.vue';
 import IconMultipleForwardRight from '@/Components/theme/icon/icon-multiple-forward-right.vue';
 import MainLayout from "@/Layouts/MainLayout.vue";
-import {useMeta} from "@/composables/use-meta";
+import {Head} from "@inertiajs/vue3";
 
 const store = useAppStore();
-
-// meta
-useMeta({ title: 'Dashboard' });
 
 // revenue
 const revenueChart = computed(() => {

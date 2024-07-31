@@ -15,9 +15,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware([])
+    ->prefix('dashboard')
+    ->as('dashboard.')
+    ->group(function () {
+    Route::get('/', [FrontController::class, 'index'])->name('home');
+    Route::get('calendar', [FrontController::class, 'calender'])->name('calendar');
+    Route::get('todolist', [FrontController::class, 'todolist'])->name('todoList');
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,7 +31,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::get('calendar', [FrontController::class, 'calender']);
-Route::get('todolist', [FrontController::class, 'todolist']);
