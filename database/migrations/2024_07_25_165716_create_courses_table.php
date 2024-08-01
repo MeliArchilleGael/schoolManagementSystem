@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
-            $table->foreignId('cycle_id')->constrained('cycles', 'id')->cascadeOnDelete();
+            $table->foreignUuid('cycle_id')->constrained('cycles', 'id')->cascadeOnDelete();
             $table->string('title')->unique();
             $table->integer('quantity')->default(25);
             $table->timestamps();
@@ -28,10 +28,10 @@ return new class extends Migration
 
         Schema::create('classroom_courses', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
-            $table->foreignId('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
-            $table->foreignId('course_id')->constrained('courses', 'id')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
-            $table->foreignId('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
+            $table->foreignUuid('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
+            $table->foreignUuid('course_id')->constrained('courses', 'id')->cascadeOnDelete();
+            $table->foreignUuid('user_id')->constrained('users', 'id')->cascadeOnDelete();
+            $table->foreignUuid('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
             $table->integer('coef')->default(1);
             $table->timestamps();
         });
@@ -52,8 +52,8 @@ return new class extends Migration
             $table->integer('anciennete')->default(1);
             $table->longText('medical_info')->nullable();
 
-            $table->foreignId('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
-            $table->foreignId('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
+            $table->foreignUuid('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
+            $table->foreignUuid('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
             $table->timestamps();
         });
 
@@ -65,12 +65,12 @@ return new class extends Migration
         Schema::create('marks', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             // foreign keys
-            $table->foreignId('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
-            $table->foreignId('section_note_id')->constrained('section_notes', 'id')->cascadeOnDelete();
-            $table->foreignId('student_id')->constrained('students', 'id')->cascadeOnDelete();
-            $table->foreignId('classroom_id')->constrained('classroom_courses', 'classroom_id')->cascadeOnDelete();
-            $table->foreignId('course_id')->constrained('classroom_courses', 'course_id')->cascadeOnDelete();
-            $table->foreignId('classroom_course_id')->constrained('classroom_courses', 'id')->cascadeOnDelete();
+            $table->foreignUuid('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
+            $table->foreignUuid('section_note_id')->constrained('section_notes', 'id')->cascadeOnDelete();
+            $table->foreignUuid('student_id')->constrained('students', 'id')->cascadeOnDelete();
+            $table->foreignUuid('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
+            $table->foreignUuid('course_id')->constrained('courses', 'id')->cascadeOnDelete();
+            $table->foreignUuid('classroom_course_id')->constrained('classroom_courses', 'id')->cascadeOnDelete();
 
             $table->decimal('note', 10,2)->nullable();
             $table->integer('writing')->nullable();
@@ -87,16 +87,16 @@ return new class extends Migration
             $table->date('start_promotion_date')->nullable();
             $table->date('end_promotion_date')->nullable();
             $table->integer('taux_reduction')->nullable();
-            $table->foreignId('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
+            $table->foreignUuid('classroom_id')->constrained('classrooms', 'id')->cascadeOnDelete();
         });
 
         Schema::create('payments', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
             $table->decimal('total_amount',10,2)->nullable();
             $table->date('payment_date')->nullable();
-            $table->foreignId('student_id')->constrained('students', 'id')->cascadeOnDelete();
-            $table->foreignId('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
-            $table->foreignId('payment_type_id')->constrained('payment_types', 'id')->cascadeOnDelete();
+            $table->foreignUuid('student_id')->constrained('students', 'id')->cascadeOnDelete();
+            $table->foreignUuid('academic_year_id')->constrained('academic_years', 'id')->cascadeOnDelete();
+            $table->foreignUuid('payment_type_id')->constrained('payment_types', 'id')->cascadeOnDelete();
         });
     }
 

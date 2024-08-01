@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
-            $table->foreignId('school_id')->constrained('schools', 'id')->cascadeOnDelete();
+            $table->foreignUuid('school_id')->constrained('schools', 'id')->cascadeOnDelete();
             $table->string('title')->unique();
             $table->timestamps();
         });

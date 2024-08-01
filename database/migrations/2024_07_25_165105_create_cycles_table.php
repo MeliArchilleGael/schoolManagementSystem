@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cycles', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
-            $table->foreignId('section_id')->constrained('sections', 'id')->cascadeOnDelete();
+            $table->foreignUuid('section_id')->constrained('sections', 'id')->cascadeOnDelete();
             $table->string('title')->unique();
             $table->timestamps();
         });
