@@ -11,6 +11,10 @@ class FrontController extends Controller
 {
     //
 
+    public function dashboard(): Response
+    {
+        return Inertia::render('Welcome');
+    }
     public function calender(): Response
     {
         return Inertia::render('Utils/calendar');
