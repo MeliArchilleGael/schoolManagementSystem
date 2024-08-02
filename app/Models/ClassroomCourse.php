@@ -12,6 +12,8 @@ class ClassroomCourse extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $keyType = "string";
+    public $incrementing = false;
 
     public function course(): BelongsTo
     {

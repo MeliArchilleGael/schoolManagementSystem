@@ -12,7 +12,8 @@ class Course extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    protected $keyType = "string";
+    public $incrementing = false;
     public function classroomCourses(): HasMany
     {
         return $this->hasMany(ClassroomCourse::class);

@@ -12,7 +12,8 @@ class Cycle extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    protected $keyType = "string";
+    public $incrementing = false;
     public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);

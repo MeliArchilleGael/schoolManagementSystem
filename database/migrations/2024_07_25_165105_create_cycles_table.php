@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cycles', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('section_id')->constrained('sections', 'id')->cascadeOnDelete();
+            $table->uuid('id')->primary()->default(\Illuminate\Support\Facades\DB::raw('public.uuid_generate_v4()'));
+            $table->foreignUuid('section_id')->constrained('sections', 'id')->cascadeOnDelete();
             $table->string('title')->unique();
             $table->timestamps();
         });

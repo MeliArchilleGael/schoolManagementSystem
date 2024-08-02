@@ -11,8 +11,9 @@ class FrontController extends Controller
 {
     //
 
-    public function index():Response {
-        return Inertia::render("Welcome");
+    public function dashboard(): Response
+    {
+        return Inertia::render('Welcome');
     }
     public function calender(): Response
     {
@@ -22,9 +23,5 @@ class FrontController extends Controller
     public function todolist(): Response
     {
         return Inertia::render('Utils/todolist');
-    }
-
-    public function login() : Response {
-        return Inertia::render('');
     }
 }

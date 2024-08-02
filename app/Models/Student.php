@@ -12,7 +12,8 @@ class Student extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    protected $keyType = "string";
+    public $incrementing = false;
     public function classroom(): BelongsTo
     {
         return $this->belongsTo(Classroom::class);

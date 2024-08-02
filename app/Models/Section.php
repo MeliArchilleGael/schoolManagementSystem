@@ -12,6 +12,8 @@ class Section extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $keyType = "string";
+    public $incrementing = false;
 
     public function school(): BelongsTo
     {

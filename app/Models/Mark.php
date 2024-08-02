@@ -12,7 +12,8 @@ class Mark extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    protected $keyType = "string";
+    public $incrementing = false;
     public function academicYear(): BelongsTo
     {
         return $this->belongsTo(AcademicYear::class);

@@ -11,6 +11,8 @@ class SectionNote extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $keyType = "string";
+    public $incrementing = false;
 
     public function marks(): HasMany
     {
