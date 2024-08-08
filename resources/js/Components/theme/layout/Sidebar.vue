@@ -3,7 +3,7 @@
         <nav class="sidebar fixed min-h-screen h-full top-0 bottom-0 w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] z-50 transition-all duration-300">
             <div class="bg-white dark:bg-[#0e1726] h-full">
                 <div class="flex justify-between items-center px-4 py-3">
-                    <InertiaLink href="/" class="main-logo flex items-center shrink-0">
+                    <InertiaLink :href="route('dashboard.home')" class="main-logo flex items-center shrink-0">
                         <img class="w-8 ml-[5px] ltr:ml-1.5 rtl:mr-1.5 flex-none" src="/assets/images/perso/logo_wise.png" alt="" />
 
                     </InertiaLink>
@@ -18,7 +18,7 @@
                 <div class="h-[calc(100vh-80px)] relative">
                     <ul class="relative font-semibold space-y-0.5 p-4 py-0">
                         <li class="nav-item">
-                            <InertiaLink href="/" class="group" @click="toggleMobileMenu">
+                            <InertiaLink :href="route('dashboard.home')" class="group" @click="toggleMobileMenu">
                                 <div class="flex items-center">
                                     <icon-menu-dashboard class="group-hover:!text-primary shrink-0" />
                                     <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">

@@ -38,21 +38,12 @@ import Popper from 'vue3-popper';
 // json to excel
 import vue3JsonExcel from 'vue3-json-excel';
 
-//vue-meta
-import {createHead} from '@vueuse/head';
-
-const head = createHead();
-
-
-import {createRouter, createWebHistory} from 'vue-router';
-
 import {Link} from "@inertiajs/vue3";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob<DefineComponent>('./Pages/**/*.vue')),
     setup({el, App, props, plugin}) {
-
         createApp({render: () => h(App, props)})
             .use(plugin)
             .use(pinia)
@@ -62,7 +53,6 @@ createInertiaApp({
             .use(VueEasymde)
             .use(vue3JsonExcel)
             .use(ZiggyVue)
-            .use(head)
             .component('Popper', Popper)
             .component('InertiaLink', Link)
             .mount(el);
