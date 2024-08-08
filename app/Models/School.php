@@ -11,8 +11,18 @@ class School extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $keyType = "string";
+    protected $keyType = "uuid";
     public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+        'location',
+        'tel',
+        'email',
+        'bo_pox',
+        'devis',
+    ];
+
     public function sections(): HasMany
     {
         return $this->hasMany(Section::class);
