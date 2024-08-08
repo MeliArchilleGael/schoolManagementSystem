@@ -26,7 +26,8 @@ class SchoolWiseSeeder extends Seeder
             'annee_academic' => '2024 - 2025',
             'active' => true,
         ]);
-        School::query()->create([
+
+        $school = School::query()->create([
             'name' => 'COLLEGE NUAYU',
             'location' => 'MBANKOMO',
             'tel' => 699501442,
@@ -35,30 +36,36 @@ class SchoolWiseSeeder extends Seeder
             'devis' => 'Peace - Work - Fatherland'
         ]);
 
-        Section::query()->create([
-            'school_id' => 1,
+        $section1 = Section::query()->create([
+            'school_id' => $school->id,
             'title' => 'PRIMAIRE'
         ]);
-        Section::query()->create([
-            'school_id' => 1,
+        $section2 = Section::query()->create([
+            'school_id' => $school->id,
             'title' => 'SECONDAIRE'
         ]);
+
+
         Cycle::query()->create([
-            'section_id' => 1,
+            'section_id' => $section1->id,
             'title' => 'ANGLOPHONE'
         ]);
         Cycle::query()->create([
-            'section_id' => 1,
+            'section_id' => $section1->id,
             'title' => 'FRANCOPHONE'
         ]);
+
+
         Cycle::query()->create([
-            'section_id' => 2,
+            'section_id' => $section2->id,
             'title' => 'ANGLOPHONE'
         ]);
         Cycle::query()->create([
-            'section_id' => 2,
+            'section_id' => $section2->id,
             'title' => 'ANGLOPHONE'
         ]);
+
+
         Classroom::query()->create([
             'cycle_id' => 2,
             'title' => '6e A',
